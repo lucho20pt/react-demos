@@ -5,8 +5,9 @@ const AddTodosForm = ({ addTodo }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    if (newTodo.trim() !== '') {
-      addTodo(newTodo)
+    const todo = { id: Math.floor(Math.random() * 1000), text: newTodo }
+    if (todo.text !== '') {
+      addTodo(todo)
       setNewTodo('')
     }
   }

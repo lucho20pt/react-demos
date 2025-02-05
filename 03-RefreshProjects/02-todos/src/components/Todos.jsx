@@ -3,10 +3,11 @@ import AddTodosForm from './AddTodosForm'
 
 const Todos = () => {
   const title = '<Todos />'
+
   const [todos, setTodos] = useState([
-    'Go to the gym',
-    'Buy groceries',
-    'Learn React',
+    { id: 1, text: 'Go to the gym' },
+    { id: 2, text: 'Buy groceries' },
+    { id: 3, text: 'Learn React' },
   ])
 
   // add
@@ -15,16 +16,17 @@ const Todos = () => {
   }
   // delete
   const deleteTodo = (todo) => {
-    if (confirm('Deleting: ' + todo)) {
-      setTodos(todos.filter((t) => t !== todo))
+    if (confirm('Deleting: ' + todo.text)) {
+      setTodos(todos.filter((t) => t.id !== todo.id))
     }
   }
-
   // edit
   const editTodo = (todo) => {
-    const newTodo = prompt('Edit todo:', todo)
-    if (newTodo) {
-      setTodos(todos.map((t) => (t === todo ? newTodo : t)))
+    const newText = prompt('Edit todo:', todo.text)
+    if (newText) {
+      setTodos(
+        todos.map((t) => (t.id === todo.id ? { ...t, text: newText } : t))
+      )
     }
   }
 
@@ -38,9 +40,9 @@ const Todos = () => {
 
         <ul id="list" className="w-md flex flex-col gap-2">
           {todos.map((todo) => (
-            <li key={Math.random()} className="text-white">
+            <li key={todo.id} className="text-white">
               <div className="p-2 flex flex-row items-center justify-around gap-2 hover:bg-amber-900">
-                <h3 className="w-3/4 text-2xl">{todo}</h3>
+                <h3 className="w-3/4 text-2xl">{todo.text}</h3>
                 <div className="w-1/4 flex flex-row items-center justify-around">
                   <button
                     // onClick={deleteTodo.bind(null, todo)}
