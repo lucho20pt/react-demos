@@ -1,6 +1,6 @@
 const Sidebar = () => {
   return (
-    <section className="flex flex-col gap-2 w-[150px] p-5
+    <section className="flex flex-col gap-2 w-[120px] p-5
     text-left text-gray-200 border-r-2 border-indigo-500">
       <h3 className="text-lg font-bold text-indigo-200">Category</h3>
       <ul className="flex flex-col mb-5 text-sm gap-1">
