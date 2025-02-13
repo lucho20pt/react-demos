@@ -11,7 +11,7 @@ const App = () => {
       <Header />
       <div className="container flex flex-row text-left">
         <Sidebar />
-        <main className="flex flex-col text-left p-5 gap-4">
+        <main className="flex flex-col text-left p-5 gap-4 border-l-2 border-indigo-500">
           <h2 className="text-lg font-bold text-indigo-200">Recomended</h2>
           <BrandFilter />
           <section>products list</section>
