@@ -1,7 +1,7 @@
 const BrandFilter = () => {
   return (
     <div
-      className="flex flex-row items-center justify-between sm:justify-start gap-2
+      className="flex flex-row items-center gap-2 sm:gap-5
     *:hover:opacity-80 *:cursor-pointer"
     >
       <button className="px-2 py-1 border text-xs">All</button>

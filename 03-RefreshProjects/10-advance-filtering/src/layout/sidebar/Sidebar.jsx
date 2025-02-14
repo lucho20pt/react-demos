@@ -1,7 +1,7 @@
 const Sidebar = () => {
   return (
     <section
-      className="flex flex-col gap-2 w-[150px] p-3
+      className="p-3 sm:p-5 md:p-10 flex flex-col gap-2 w-[150px] 
     text-left text-gray-200"
     >
       <h3 className="text-lg font-bold text-indigo-200">Category</h3>

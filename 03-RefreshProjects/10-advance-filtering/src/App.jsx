@@ -25,7 +25,7 @@ const App = () => {
       <Header />
       <div className="container flex flex-row text-left">
         <Sidebar />
-        <main className="flex flex-col text-left p-4 gap-4 border-l-2 border-indigo-500">
+        <main className="p-3 sm:p-5 md:p-10 flex flex-col text-left gap-5 border-l-2 border-indigo-500">
           <h2 className="text-lg font-bold text-indigo-200">Recomended</h2>
           <BrandFilter />
           <ProductsList products={products} />

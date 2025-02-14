@@ -2,9 +2,13 @@ import PropTypes from 'prop-types'
 
 const ProductCard = ({ id, img, title, reviews, prevPrice, newPrice }) => {
   return (
-    <div id={id} className="flex flex-col gap-2 px-2">
-      <img className="w-auto h-[160px] rounded-2xl" src={img} alt={title} />
-      <div className="p-2">
+    <div
+      id={id}
+      className="m-4 flex flex-col gap-4 rounded-2xl bg-indigo-600 
+    hover:opacity-100 opacity-90 cursor-pointer"
+    >
+      <img className="rounded-t-2xl h-35" src={img} alt={title} />
+      <div className="p-4">
         <h3 className="text-lg font-bold">{title}</h3>
         <p className="">
           <span>⭐⭐⭐⭐</span>({reviews} reviews)
