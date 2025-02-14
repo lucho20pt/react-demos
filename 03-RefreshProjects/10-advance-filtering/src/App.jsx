@@ -7,7 +7,10 @@ import ProductsList from './layout/products/ProductsList'
 
 const App = () => {
   const [products, setProducts] = useState([])
+  const [filteredBrands, setFilteredBrands] = useState([])
+  const [brands, setBrands] = useState([])
 
+  // Fetch data from API
   useEffect(() => {
     const fetchData = async () => {
       // Simulate a delay
@@ -16,6 +19,15 @@ const App = () => {
     }
     fetchData()
   }, [])
+
+  // Derive unique brands and set filtered brands
+  useEffect(() => {
+    const brandsArray = [
+      ...new Set(products.map((item) => item.company.toLowerCase())),
+    ]
+    setBrands(brandsArray)
+    setFilteredBrands(products)
+  }, [products])
 
   return (
     <div
@@ -26,9 +38,13 @@ const App = () => {
       <div className="container flex flex-row text-left">
         <Sidebar />
         <main className="p-3 sm:p-5 md:p-10 flex flex-col text-left gap-5 border-l-2 border-indigo-500">
-          <h2 className="text-lg font-bold text-indigo-200">Recomended</h2>
-          <BrandFilter />
-          <ProductsList products={products} />
+          <h2 className="text-lg font-bold text-indigo-200">Recommended</h2>
+          <BrandFilter
+            brands={brands}
+            products={products}
+            setFilteredBrands={setFilteredBrands}
+          />
+          <ProductsList products={filteredBrands} />
         </main>
       </div>
     </div>
