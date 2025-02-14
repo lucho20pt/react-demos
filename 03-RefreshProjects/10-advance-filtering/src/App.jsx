@@ -1,6 +1,6 @@
 import BrandFilter from './components/BrandFilter'
-import Header from './components/header/Header'
-import Sidebar from './components/sidebar/Sidebar'
+import Header from './layout/header/Header'
+import Sidebar from './layout/sidebar/Sidebar'
 
 const App = () => {
   return (
@@ -11,10 +11,12 @@ const App = () => {
       <Header />
       <div className="container flex flex-row text-left">
         <Sidebar />
-        <main className="flex flex-col text-left p-5 gap-4 border-l-2 border-indigo-500">
+        <main className="flex flex-col text-left p-4 gap-4 border-l-2 border-indigo-500">
           <h2 className="text-lg font-bold text-indigo-200">Recomended</h2>
           <BrandFilter />
-          <section>products list</section>
+          <section className="grid lg:grid-cols-4 md:grid-cols-2 gap-10">
+            products
+          </section>
         </main>
       </div>
     </div>
