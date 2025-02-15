@@ -1,4 +1,9 @@
-const Sidebar = () => {
+import PropTypes from 'prop-types'
+
+const Sidebar = ({ setSearchQuery }) => {
+  const handleCategoryChange = (event) => {
+    setSearchQuery((prev) => ({ ...prev, category: event.target.value }))
+  }
   return (
     <section
       className="p-3 sm:p-5 md:p-10 flex flex-col gap-2 w-[150px] 
@@ -10,9 +15,11 @@ const Sidebar = () => {
           <li>
             <label className="flex gap-2 cursor-pointer" htmlFor="all-category">
               <input
+                onChange={handleCategoryChange}
                 className="accent-pink-500"
                 type="radio"
                 name="category"
+                value=""
                 id="all-category"
               />
               <span>All</span>
@@ -24,9 +31,11 @@ const Sidebar = () => {
               htmlFor="sneakers-category"
             >
               <input
+                onChange={handleCategoryChange}
                 className="accent-pink-500"
                 type="radio"
                 name="category"
+                value="sneakers"
                 id="sneakers-category"
               />
               <span>Sneakers</span>
@@ -38,9 +47,11 @@ const Sidebar = () => {
               htmlFor="flats-category"
             >
               <input
+                onChange={handleCategoryChange}
                 className="accent-pink-500"
                 type="radio"
                 name="category"
+                value="flats"
                 id="flats-category"
               />
               <span>Flats</span>
@@ -52,9 +63,11 @@ const Sidebar = () => {
               htmlFor="sandals-category"
             >
               <input
+                onChange={handleCategoryChange}
                 className="accent-pink-500"
                 type="radio"
                 name="category"
+                value="sandals"
                 id="sandals-category"
               />
               <span>Sandals</span>
@@ -66,9 +79,11 @@ const Sidebar = () => {
               htmlFor="heels-category"
             >
               <input
+                onChange={handleCategoryChange}
                 className="accent-pink-500"
                 type="radio"
                 name="category"
+                value="heels"
                 id="heels-category"
               />
               <span>Heels</span>
@@ -77,15 +92,17 @@ const Sidebar = () => {
         </ul>
       </form>
 
-      <h3 className="text-xl font-bold text-indigo-200">Price</h3>
+      {/* <h3 className="text-xl font-bold text-indigo-200">Price</h3>
       <form>
         <ul className="flex flex-col mb-5 text-xs gap-1">
           <li>
             <label className="flex gap-2 cursor-pointer" htmlFor="all-price">
               <input
+                onChange={handlePriceChange}
                 className="accent-pink-500"
                 type="radio"
                 name="price"
+                value=""
                 id="all-price"
               />
               <span>All</span>
@@ -94,9 +111,11 @@ const Sidebar = () => {
           <li>
             <label className="flex gap-2 cursor-pointer" htmlFor="price-0-50">
               <input
+                onChange={handlePriceChange}
                 className="accent-pink-500"
                 type="radio"
                 name="price"
+                value="0-50"
                 id="price-0-50"
               />
               <span>0-50</span>
@@ -105,9 +124,11 @@ const Sidebar = () => {
           <li>
             <label className="flex gap-2 cursor-pointer" htmlFor="price-50-100">
               <input
+                onChange={handlePriceChange}
                 className="accent-pink-500"
                 type="radio"
                 name="price"
+                value="50-100"
                 id="price-50-100"
               />
               <span>50 - 100</span>
@@ -119,9 +140,11 @@ const Sidebar = () => {
               htmlFor="price-100-150"
             >
               <input
+                onChange={handlePriceChange}
                 className="accent-pink-500"
                 type="radio"
                 name="price"
+                value="100-150"
                 id="price-100-150"
               />
               <span>100 - 150</span>
@@ -133,9 +156,11 @@ const Sidebar = () => {
               htmlFor="price-over-150"
             >
               <input
+                onChange={handlePriceChange}
                 className="accent-pink-500"
                 type="radio"
                 name="price"
+                value="150-"
                 id="price-over-150"
               />
               <span>Over 150</span>
@@ -150,9 +175,11 @@ const Sidebar = () => {
           <li>
             <label className="flex gap-2 cursor-pointer" htmlFor="all-color">
               <input
+                onChange={handleColorChange}
                 className="accent-pink-500"
                 type="radio"
                 name="color"
+                value=""
                 id="all-color"
               />
               <span>All</span>
@@ -161,9 +188,11 @@ const Sidebar = () => {
           <li>
             <label className="flex gap-2 cursor-pointer" htmlFor="black-color">
               <input
+                onChange={handleColorChange}
                 className="accent-black"
                 type="radio"
                 name="color"
+                value="black"
                 id="black-color"
               />
               <span>Black</span>
@@ -172,9 +201,11 @@ const Sidebar = () => {
           <li>
             <label className="flex gap-2 cursor-pointer" htmlFor="blue-color">
               <input
+                onChange={handleColorChange}
                 className="accent-blue-500"
                 type="radio"
                 name="color"
+                value="blue"
                 id="blue-color"
               />
               <span>Blue</span>
@@ -183,9 +214,11 @@ const Sidebar = () => {
           <li>
             <label className="flex gap-2 cursor-pointer" htmlFor="red-color">
               <input
+                onChange={handleColorChange}
                 className="accent-red-500"
                 type="radio"
                 name="color"
+                value="red"
                 id="red-color"
               />
               <span>Red</span>
@@ -194,9 +227,11 @@ const Sidebar = () => {
           <li>
             <label className="flex gap-2 cursor-pointer" htmlFor="green-color">
               <input
+                onChange={handleColorChange}
                 className="accent-green-500"
                 type="radio"
                 name="color"
+                value="green"
                 id="green-color"
               />
               <span>Green</span>
@@ -205,18 +240,24 @@ const Sidebar = () => {
           <li>
             <label className="flex gap-2 cursor-pointer" htmlFor="white-color">
               <input
+                onChange={handleColorChange}
                 className="accent-white"
                 type="radio"
                 name="color"
+                value="white"
                 id="white-color"
               />
               <span>White</span>
             </label>
           </li>
         </ul>
-      </form>
+      </form> */}
     </section>
   )
+}
+
+Sidebar.propTypes = {
+  setSearchQuery: PropTypes.func.isRequired,
 }
 
 export default Sidebar

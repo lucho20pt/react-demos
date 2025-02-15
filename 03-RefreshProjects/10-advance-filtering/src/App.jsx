@@ -9,6 +9,8 @@ const App = () => {
   const [products, setProducts] = useState([])
   const [filteredBrands, setFilteredBrands] = useState([])
   const [brands, setBrands] = useState([])
+  const [filteredProducts, setFilteredProducts] = useState([])
+  const [searchQuery, setSearchQuery] = useState('')
 
   // Fetch data from API
   useEffect(() => {
@@ -29,6 +31,20 @@ const App = () => {
     setFilteredBrands(products)
   }, [products])
 
+  // Filter products based on search query
+  useEffect(() => {
+    let filtered = filteredBrands
+
+    if (searchQuery.category) {
+      filtered = filtered.filter(
+        (item) =>
+          item.category.toLowerCase() === searchQuery.category.toLowerCase()
+      )
+    }
+
+    setFilteredProducts(filtered)
+  }, [searchQuery, filteredBrands])
+
   return (
     <div
       className="flex flex-col items-center h-screen 
@@ -36,7 +52,7 @@ const App = () => {
     >
       <Header />
       <div className="container flex flex-row text-left">
-        <Sidebar />
+        <Sidebar setSearchQuery={setSearchQuery} />
         <main className="p-3 sm:p-5 md:p-10 flex flex-col text-left gap-5 border-l-2 border-indigo-500">
           <h2 className="text-lg font-bold text-indigo-200">Recommended</h2>
           <BrandFilter
@@ -44,7 +60,7 @@ const App = () => {
             products={products}
             setFilteredBrands={setFilteredBrands}
           />
-          <ProductsList products={filteredBrands} />
+          <ProductsList products={filteredProducts} />
         </main>
       </div>
     </div>
