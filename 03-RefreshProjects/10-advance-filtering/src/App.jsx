@@ -42,6 +42,27 @@ const App = () => {
       )
     }
 
+    if (searchQuery.price) {
+      const range = searchQuery.price.split('-')
+      if (range[1] !== '') {
+        filtered = filtered.filter(
+          (item) =>
+            Number(item.newPrice) >= Number(range[0]) &&
+            Number(item.newPrice) <= Number(range[1])
+        )
+      } else {
+        filtered = filtered.filter(
+          (item) => Number(item.newPrice) >= Number(range[0])
+        )
+      }
+    }
+
+    if (searchQuery.color) {
+      filtered = filtered.filter(
+        (item) => item.color.toLowerCase() === searchQuery.color.toLowerCase()
+      )
+    }
+
     setFilteredProducts(filtered)
   }, [searchQuery, filteredBrands])
 
