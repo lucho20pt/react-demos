@@ -10,7 +10,12 @@ const App = () => {
   const [filteredBrands, setFilteredBrands] = useState([])
   const [brands, setBrands] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState({
+    category: '',
+    price: '',
+    color: '',
+  })
+  const [searchInput, setSearchInput] = useState('')
 
   // Fetch data from API
   useEffect(() => {
@@ -24,17 +29,27 @@ const App = () => {
 
   // Derive unique brands and set filtered brands
   useEffect(() => {
-    const brandsArray = [
-      ...new Set(products.map((item) => item.company.toLowerCase())),
-    ]
-    setBrands(brandsArray)
-    setFilteredBrands(products)
+    if (products.length > 0) {
+      const brandsArray = [
+        ...new Set(products.map((item) => item.company.toLowerCase())),
+      ]
+      setBrands(brandsArray)
+      setFilteredBrands(products)
+    }
   }, [products])
 
-  // Filter products based on search query
+  // Filter products based on search query and input
   useEffect(() => {
     let filtered = filteredBrands
 
+    // Apply search input filter
+    if (searchInput !== '') {
+      filtered = filtered.filter((item) =>
+        item.title.toLowerCase().includes(searchInput.toLowerCase())
+      )
+    }
+
+    // Apply category filter
     if (searchQuery.category) {
       filtered = filtered.filter(
         (item) =>
@@ -42,6 +57,7 @@ const App = () => {
       )
     }
 
+    // Apply price filter
     if (searchQuery.price) {
       const range = searchQuery.price.split('-')
       if (range[1] !== '') {
@@ -57,6 +73,7 @@ const App = () => {
       }
     }
 
+    // Apply color filter
     if (searchQuery.color) {
       filtered = filtered.filter(
         (item) => item.color.toLowerCase() === searchQuery.color.toLowerCase()
@@ -64,14 +81,14 @@ const App = () => {
     }
 
     setFilteredProducts(filtered)
-  }, [searchQuery, filteredBrands])
+  }, [searchQuery, filteredBrands, searchInput])
 
   return (
     <div
       className="flex flex-col items-center h-screen 
       text-center bg-gray-800 text-white"
     >
-      <Header />
+      <Header setSearchInput={setSearchInput} />
       <div className="container flex flex-row text-left">
         <Sidebar setSearchQuery={setSearchQuery} />
         <main className="p-3 sm:p-5 md:p-10 flex flex-col text-left gap-5 border-l-2 border-indigo-500">
